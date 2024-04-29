@@ -42,15 +42,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, loading = false, fullWidth = false, iconDisposition = 'right', icon, children, ...props }, ref) => {
     return (
       <button
-        className={cn(buttonVariants({ variant, size, iconDisposition }), className, fullWidth && 'w-full')}
+        className={cn(buttonVariants({ variant, size, iconDisposition }), className, fullWidth && 'w-full', loading && 'loading relative')}
         ref={ref}
         {...props}
       >
-        {loading && <Spinner />}
-        {!loading && (
+        {(
           <>
-            <span className='group-[.icon-only]:hidden'>{children}</span>
-            {icon && <span>{icon}</span>}
+            {<Spinner className='hidden absolute group-[.loading]:block'/>}
+            <span className='group-[.icon-only]:hidden group-[.loading]:opacity-0'>{children}</span>
+            {icon && <span className='group-[.loading]:opacity-0'>{icon}</span>}
           </>
         )}
       </button>
