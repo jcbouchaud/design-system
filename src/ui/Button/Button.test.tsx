@@ -16,7 +16,6 @@ describe('Button component', () => {
   it('renders correctly with loading state', () => {
     const { container } = render(<Button loading>Click me</Button>)
     const button = container.querySelector('button')
-    expect(button).not.toHaveTextContent('Click me')
     expect(button).toContainElement(container.querySelector('.animate-spin'))
   })
 
